@@ -1,25 +1,34 @@
 # 工作名称
-name: GitHub Actions Demo
+name: GitHub Actions AutoCommit Everyday Green
 # 运行名称
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 # 事件
-on: [push]
-# 工作细节
+on:
+  schedule:
+    - cron: '10 07 * * *'
+# 工作
 jobs:
-  # 执行动作
-  Explore-GitHub-Actions:
+  # 工作名，可以有多个
+  Everyday-Green:
     # 运行环境
     runs-on: ubuntu-latest
+    # 设置作业shell和默认文件夹
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}  
     # linux指令步骤
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      # 进入存储库
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: run Code
+        run: python3 ./EverydayWriteLog.py
+      - name: Git add
+        run: git add .
+      - name: Git commit
+        run: git commit -m 'date'
+      - name: Git push
+        run: git push
+      - name: Check out repository code
+        run: echo "${{ job.status }}"
