@@ -31,6 +31,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       # 密钥内容填入到~/.ssh/id_rsa中
+      - run: mkdir -p ~/.ssh
       - run: $SUPER_SECRET > ~/.ssh/id_rsa
       - name: run Code
         run: python3 EverydayWriteLog.py
