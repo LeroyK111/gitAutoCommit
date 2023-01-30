@@ -5,7 +5,7 @@ run-name: ${{ github.actor }} AutoCommit Everyday Green 🚀
 # 事件
 on:
   schedule:
-    - cron: '43 07 * * *'
+    - cron: '16 08 * * *'
   push:
     branches:
       - master
@@ -23,11 +23,15 @@ jobs:
     env:
       UserEmail: bridieiybnf@gmail.com
       UserName: LeroyK
+      # 记得加密密钥文件
+      SUPER_SECRET: ${{ secrets.ID_RSA }}
     # linux指令步骤
     steps:
       # 进入存储库
       - name: Check out repository code
         uses: actions/checkout@v3
+      # 密钥内容填入到~/.ssh/id_rsa中
+      - run: $SUPER_SECRET > ~/.ssh/id_rsa
       - name: run Code
         run: python3 EverydayWriteLog.py
       - run: git config --global user.email "$UserEmail"
