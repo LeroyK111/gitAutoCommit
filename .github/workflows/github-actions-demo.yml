@@ -1,7 +1,7 @@
 # 工作名称，可以不写
-name: GitHub Auto Push
+name: GitHub Test
 # 运行名称，可以不写
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.ref }} is test 🚀
 # 事件可以多个
 on: [push]
 # 工作细节
