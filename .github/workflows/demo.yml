@@ -35,6 +35,8 @@ jobs:
       - run: echo "$SUPER_SECRET" > ~/.ssh/id_rsa
       - name: run Code
         run: python3 EverydayWriteLog.py
+      - name: show files
+        run: ls
       - run: git config --global user.email "$UserEmail"
       - run: git config --global user.name "$UserName"
       - name: Git add
