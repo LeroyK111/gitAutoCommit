@@ -5,8 +5,8 @@ run-name: ${{ github.actor }} AutoCommit Everyday Green 🚀
 # 事件
 on:
   schedule:
-    # 每天触发两侧
-    - cron:  '00 6,17 * * *'
+    # 每天触发两遍
+    - cron:  '30 6,17 * * *'
   push:
     branches:
       - master
