@@ -21,3 +21,10 @@ You're done!
 ## Key points:
 
 ![image-20230130171221437](README.assets/image-20230130171221437.png)
+
+## prolems that may occur
+Don't worry if the timing function fails, it happens all the time.
+
+https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+
+![image-20230131004623270](README.assets/image-20230131004623270.png)

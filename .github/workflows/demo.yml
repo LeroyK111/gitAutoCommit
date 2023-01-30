@@ -5,17 +5,18 @@ run-name: ${{ github.actor }} AutoCommit Everyday Green 🚀
 # 事件
 on:
   schedule:
-    # 每天触发两遍
-    - cron:  '30 6,17 * * *'
-  push:
-    branches:
-      - master
+    # 偶尔触发不了，也是正常的。
+    - cron:  '30 5,17 * * *'
 # 工作
 jobs:
   # 工作名，可以有多个
   Everyday-Green:
     # 运行环境
     runs-on: ubuntu-latest
+    # python环境
+    strategy:
+      matrix:
+        python-version: ["3.11.1"]
     # 设置作业shell和默认文件夹
     defaults:
       run:
@@ -29,19 +30,25 @@ jobs:
     # linux指令步骤
     steps:
       # 进入存储库
-      - name: Check out repository code
+      - name: keyword actions/checkout@v3.
         uses: actions/checkout@v3
-      - name: run Code
-        run: python3 EverydayWriteLog.py
-      - name: show files
-        run: ls
+      # 设置用户名和邮箱
       - run: git config --global user.email "$UserEmail"
       - run: git config --global user.name "$UserName"
+      # 拉取最新的master分支，并强制覆盖本地
+      - run: git pull origin master -f
+      # 执行python脚本
+      - name: run Code
+        run: python3 EverydayWriteLog.py
+      # 添加
       - name: Git add
         run: git add .
+      # 提交
       - name: Git commit
         run: git commit -m 'autoCommit'
+      # 推送
       - name: Git push
         run: git push
+      # 检查工作流是否执行完毕
       - name: Check out repository code
         run: echo "${{ job.status }}"
