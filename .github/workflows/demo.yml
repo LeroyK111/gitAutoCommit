@@ -5,7 +5,7 @@ run-name: ${{ github.actor }} AutoCommit Everyday Green 🚀
 # 事件
 on:
   schedule:
-    - cron: '22 07 * * *'
+    - cron: '25 07 * * *'
 # 工作
 jobs:
   # 工作名，可以有多个
@@ -20,8 +20,6 @@ jobs:
     # linux指令步骤
     steps:
       # 进入存储库
-      - name: Check out repository code
-        uses: actions/checkout@v3
       - name: run Code
         run: python3 ./EverydayWriteLog.py
       - name: Git add
