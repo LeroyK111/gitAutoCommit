@@ -1,11 +1,11 @@
 # 工作名称
-name: GitHub Actions AutoCommit Everyday Green
+name: AutoCommit Everyday Green
 # 运行名称
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} AutoCommit Everyday Green 🚀
 # 事件
 on:
   schedule:
-    - cron: '10 07 * * *'
+    - cron: '22 07 * * *'
 # 工作
 jobs:
   # 工作名，可以有多个
